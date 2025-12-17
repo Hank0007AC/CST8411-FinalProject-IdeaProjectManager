@@ -1,0 +1,13 @@
+@startuml
+salt
+{
+  {+
+    {^ "Register" }
+    { "Username" | "[__________]" }
+    { "Password" | "[__________]" }
+    { "Confirm"  | "[__________]" }
+    { [Create Account] }
+    { "Back to Login" }
+  }
+}
+@enduml

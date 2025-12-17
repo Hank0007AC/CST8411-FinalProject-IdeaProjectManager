@@ -1,0 +1,23 @@
+
+digraph G {
+  rankdir=LR;
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+
+  IdeaProjectManagerApp [shape=record, label="{IdeaProjectManagerApp| - currentUser : String\l - ideasObs : ObservableList\l - tasksObs : ObservableList\l| + start(Stage) : void\l}"];
+  Idea [shape=record, label="{Idea| - id : String\l - title : String\l - category : String\l - tasks : List\l}"];
+  Task [shape=record, label="{Task| - id : String\l - title : String\l - done : boolean\l}"];
+  SuggestionEngine [shape=record, label="{SuggestionEngine| + generateDefaultTasks(...) : List\l + suggestForTask(...) : ToolSuggestion\l}"];
+  ToolSuggestion [shape=record, label="{ToolSuggestion| - tools : List\l - aiAssistants : List\l| + toDisplayText() : String\l}"];
+  UserStore [shape=record, label="{UserStore| + register(...) : boolean\l + authenticate(...) : boolean\l}"];
+  SessionManager [shape=record, label="{SessionManager| + saveSession(...) : void\l + loadSession() : Session\l + clearSession() : void\l}"];
+  IdeaStore [shape=record, label="{IdeaStore| + loadIdeas(...) : List\l + saveIdeas(...) : void\l}"];
+  Session [shape=record, label="{Session| - username : String\l - createdAtIso : String\l}"];
+
+  Idea -> Task [label="1..*"];
+  IdeaProjectManagerApp -> SuggestionEngine;
+  IdeaProjectManagerApp -> UserStore;
+  IdeaProjectManagerApp -> SessionManager;
+  IdeaProjectManagerApp -> IdeaStore;
+  SessionManager -> Session;
+}

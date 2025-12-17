@@ -1,0 +1,60 @@
+@startuml
+class IdeaProjectManagerApp {
+  - currentUser : String
+  - ideasObs : ObservableList<Idea>
+  - tasksObs : ObservableList<Task>
+  + start(Stage) : void
+}
+
+class Idea {
+  - id : String
+  - title : String
+  - category : String
+  - tasks : List<Task>
+}
+
+class Task {
+  - id : String
+  - title : String
+  - done : boolean
+}
+
+class SuggestionEngine {
+  + generateDefaultTasks(ideaId, category) : List<Task>
+  + suggestForTask(taskTitle) : ToolSuggestion
+}
+
+class ToolSuggestion {
+  - tools : List<String>
+  - aiAssistants : List<String>
+  + toDisplayText() : String
+}
+
+class UserStore {
+  + register(username, password) : boolean
+  + authenticate(username, password) : boolean
+}
+
+class SessionManager {
+  + saveSession(username) : void
+  + loadSession() : Session
+  + clearSession() : void
+}
+
+class IdeaStore {
+  + loadIdeas(username) : List<Idea>
+  + saveIdeas(username, ideas) : void
+}
+
+class Session {
+  - username : String
+  - createdAtIso : String
+}
+
+Idea "1" o-- "*" Task
+IdeaProjectManagerApp --> SuggestionEngine
+IdeaProjectManagerApp --> UserStore
+IdeaProjectManagerApp --> SessionManager
+IdeaProjectManagerApp --> IdeaStore
+SessionManager --> Session
+@enduml

@@ -1,0 +1,36 @@
+
+digraph G {
+  rankdir=LR;
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+
+  subgraph clusterApp {
+    label="JavaFX Desktop App";
+    style=rounded;
+    color=gray;
+    UI [shape=box, label="JavaFX UI"];
+    APP [shape=box, label="IdeaProjectManagerApp"];
+    SE [shape=box, label="SuggestionEngine"];
+    UI -> APP;
+    APP -> SE;
+  }
+
+  subgraph clusterPersist {
+    label="Persistence (JSON)";
+    style=rounded;
+    color=gray;
+    US [shape=box, label="UserStore"];
+    SM [shape=box, label="SessionManager"];
+    IS [shape=box, label="IdeaStore"];
+  }
+
+  FS [shape=cylinder, label="Local Files\n~/.idea-project-manager\nusers.json\nsession.json\nideas_user.json"];
+
+  APP -> US;
+  APP -> SM;
+  APP -> IS;
+
+  US -> FS [label="users.json"];
+  SM -> FS [label="session.json"];
+  IS -> FS [label="ideas_user.json"];
+}

@@ -1,0 +1,25 @@
+@startuml
+' Simple ERD (logical) - future DB option
+entity Users {
+  *username : VARCHAR(20) <<PK>>
+  password_hash : VARCHAR(255)
+  created_at : DATETIME
+}
+
+entity Ideas {
+  *id : VARCHAR(50) <<PK>>
+  title : VARCHAR(200)
+  category : VARCHAR(100)
+  username : VARCHAR(20) <<FK>>
+}
+
+entity Tasks {
+  *id : VARCHAR(80) <<PK>>
+  title : VARCHAR(300)
+  done : BOOLEAN
+  idea_id : VARCHAR(50) <<FK>>
+}
+
+Users ||--o{ Ideas
+Ideas ||--o{ Tasks
+@enduml

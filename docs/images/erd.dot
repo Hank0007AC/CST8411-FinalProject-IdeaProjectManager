@@ -1,0 +1,13 @@
+
+digraph G {
+  rankdir=LR;
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+
+  Users [shape=record, label="{Users| username (PK)\l password_hash\l created_at\l}"];
+  Ideas [shape=record, label="{Ideas| id (PK)\l username (FK)\l title\l category\l}"];
+  Tasks [shape=record, label="{Tasks| id (PK)\l idea_id (FK)\l title\l done\l}"];
+
+  Users -> Ideas [label="1..*"];
+  Ideas -> Tasks [label="1..*"];
+}

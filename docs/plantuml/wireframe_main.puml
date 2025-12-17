@@ -1,0 +1,22 @@
+@startuml
+salt
+{
+  {^ "Idea Project Manager (Main)" }
+  {
+    "Ideas" | "To-Do List" | "Assistant"
+    {
+      [Idea list]
+      --
+      "Add idea form"
+    } |
+    {
+      [Task list]
+      --
+      "Add task form"
+    } |
+    {
+      [Suggestions + chat]
+    }
+  }
+}
+@enduml

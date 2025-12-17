@@ -1,0 +1,27 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "JavaFX Desktop App" {
+  [JavaFX UI] as UI
+  [IdeaProjectManagerApp] as APP
+  [SuggestionEngine] as SE
+}
+
+package "Persistence (JSON)" {
+  [UserStore] as US
+  [SessionManager] as SM
+  [IdeaStore] as IS
+}
+
+database "Local Files\n~/.idea-project-manager" as FS
+
+UI --> APP
+APP --> SE
+APP --> US
+APP --> SM
+APP --> IS
+
+US --> FS : users.json
+SM --> FS : session.json
+IS --> FS : ideas_<user>.json
+@enduml
